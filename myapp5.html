@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+	<title>sorting data on clicking table header</title>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="script5.js"></script>
+</head>
+<style type="text/css">
+.columnup{
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 10px solid black;
+}
+.columndown{
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 10px solid black;
+}
+</style>
+<body ng-controller="myController">
+	<table border="1">
+		<thead>
+			<tr>
+				<th ng-click="sortData">Name
+					<div ng-class="getSortCLass('name')"></div>
+				</th>
+				<th>Dob<div ng-class="getSortCLass('dob')"></div></th>
+				<th>Gender<div ng-class="getSortCLass('gender')"></div></th>
+				<th>Salary<div ng-class="getSortCLass('salary')"></div></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="employee in employees | orderBy:sortColumn:sortReverse">
+				<td>{{ employee.name }}</td>
+				<td>{{ employee.dob | date:'dd/MM/yyyy'}}</td>
+				<td>{{ employee.gender }}</td>
+				<td>{{ employee.salary }}</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
